@@ -13,7 +13,6 @@ import { OrdersModule } from './orders/orders.module';
 import { AuthModule } from './auth/auth.module';
 import { LoggerMiddleware } from './middlewares/logger.middleware';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DataSource } from 'typeorm';
 
 @Module({
   imports: [
@@ -23,14 +22,14 @@ import { DataSource } from 'typeorm';
     })
     // , TypeOrmModule.forRoot(),
     // , StaffsModule
-    // , CustomersModule
+    , CustomersModule
     // , ProductsModule
     , CompaniesModule
     // , WarehousesModule
     // , InventoriesModule
     // , PurchasesModule
     // , OrdersModule
-    // , AuthModule
+    , AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],

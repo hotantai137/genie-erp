@@ -13,8 +13,8 @@ export const databaseProviders = [
         password: process.env.DATABASE_PASSWORD,
         database: process.env.DATABASE_NAME,
         entities: [
-            Company
-            // __dirname + '/../**/*.entity{.ts,.js}',
+            // Company
+            __dirname + '/../**/*.entity{.ts,.js}',
         ],
         synchronize: true,
       });

@@ -18,6 +18,12 @@ export class CompaniesService {
     return this.companiesRepository.findOneBy({ id });
   }
 
+  async create(data: any): Promise<Company[]> {
+    const company = this.companiesRepository.create(data);
+    await this.companiesRepository.save(company);
+    return company;
+  }
+
   async remove(id: number): Promise<void> {
     await this.companiesRepository.delete(id);
   }
