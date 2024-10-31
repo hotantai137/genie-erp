@@ -1,40 +1,36 @@
+import { Exclude } from 'class-transformer';
+import { AbstractEntity } from 'src/common/entities/abtract.entity';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-@Entity({ name: 'CUSTOMERS' })
-export class Customer {
-  @PrimaryGeneratedColumn()
-  id: number;
-  @Column({ length: 100 })
-  USERNAME: string;
+@Entity({ 
+  name: 'Customers',
+  synchronize: true,
+})
+export class Customer extends AbstractEntity {
   @Column()
-  PASSWORD: string;
+  phoneNumber: string;
+
   @Column()
-  EMAIL: string;
+  @Exclude()
+  password: string;
+
   @Column()
-  PHONENUMBER: string;
+  email: string;
+
   @Column()
-  FIRSTNAME: string;
+  firstName: string;
+
   @Column()
-  LASTNAME: string;
+  lastName: string;
+
   @Column()
-  BIRTHDATE: string;
+  birthDate: string;
+
   @Column()
-  AVATAR: string;
+  avatar: string;
+
   @Column()
-  ISACTIVE: number
+  address: string;
+
   @Column()
-  ISDELETED: number
-  @Column()
-  CREATEDBY: string;
-  @Column()
-  CREATEDDATE: string;
-  @Column()
-  UPDATEDBY: string;
-  @Column()
-  UPDATEDDATE: string;
-  @Column()
-  COMPANYID: number;
-  @Column()
-  ADDRESS: string;
-//   @Column({ default: true })
-//   isActive: boolean;
+  companyId: number;
 }

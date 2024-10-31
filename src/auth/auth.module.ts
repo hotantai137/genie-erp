@@ -5,6 +5,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
 import { CustomersModule } from 'src/customers/customers.module';
 import { CustomersService } from 'src/customers/customers.service';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthGuard } from './auth.guard';
 
 @Module({
     imports: [
@@ -17,6 +19,10 @@ import { CustomersService } from 'src/customers/customers.service';
     ],
     providers: [AuthService
                 , CustomersService
+                , {
+                    provide: APP_GUARD,
+                    useClass: AuthGuard,
+                  }
     ],
     controllers: [AuthController],
 })

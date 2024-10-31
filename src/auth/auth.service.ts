@@ -8,17 +8,16 @@ export class AuthService {
     private jwtService: JwtService
   ) {}
 
-    async signIn(username: string, password: string): Promise<{ access_token: string }> {
-        const user = await this.customersService.findOneUserName(username);
-        console.log(user);
-        console.log(password);
-        if (user?.PASSWORD !== password) {
+    async signIn(phoneNumber: string, password: string): Promise<{ access_token: string, phoneNumber: string }> {
+        const customer = await this.customersService.findOnePhoneNumber(phoneNumber);
+        if (customer?.password !== password) {
             throw new UnauthorizedException();
         }
 
-        const payload = { sub: user.id, username: user.USERNAME };
+        const payload = { sub: customer.id, phoneNumber: customer.phoneNumber };
         return {
             access_token: await this.jwtService.signAsync(payload),
+            phoneNumber: customer.phoneNumber
         };        
     }
 }

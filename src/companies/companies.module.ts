@@ -1,13 +1,14 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
+// import { TypeOrmModule } from '@nestjs/typeorm';
 import { CompaniesService } from './companies.service';
 import { CompaniesController } from './companies.controller';
 import { DatabaseModule } from 'src/database/database.module';
-import { companyProviders } from './company.providers';
+// import { companyProviders } from './company.providers';
 
 @Module({
   imports: [DatabaseModule],
-  providers: [...companyProviders, CompaniesService],
+  // providers: [...companyProviders, CompaniesService],
+  providers: [CompaniesService],
   controllers: [CompaniesController]
 })
 export class CompaniesModule {}

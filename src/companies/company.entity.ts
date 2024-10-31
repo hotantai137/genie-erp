@@ -1,33 +1,19 @@
+import { AbstractEntity } from 'src/common/entities/abtract.entity';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-@Entity({ name: 'companies' })
-export class Company {
-  @PrimaryGeneratedColumn()
-  id: number;
+@Entity({ name: 'Companies' })
+export class Company extends AbstractEntity {
+  @Column()
+  companyShortName: string;
 
   @Column()
-  COMPANYNAME: string;
+  companyAddress: string;
 
   @Column()
-  COMPANYSHORTNAME: string;
+  companyTaxId: string;
 
   @Column()
-  COMPANYADDRESS: string;
+  companyPhoneNumber: string;
 
   @Column()
-  COMPANYTAXID: string;
-
-  @Column()
-  COMPANYPHONENUMBER: string;
-
-  @Column()
-  COMPANYEMAIL: string;
-
-  @Column()
-  isActive: number;
-
-  @Column()
-  ISDELETED: number;
-
-//   @Column({ default: true })
-//   isActive: boolean;
+  companyEmail: string;
 }
