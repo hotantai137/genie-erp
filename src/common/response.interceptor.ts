@@ -10,7 +10,6 @@ import {
   import { catchError, map } from 'rxjs/operators';
    
   export type Response<T> = {
-    status: boolean;
     statusCode: number;
     message: string;
     data: T;
@@ -42,7 +41,6 @@ import {
           : HttpStatus.INTERNAL_SERVER_ERROR;
    
       response.status(status).json({
-        status: false,
         statusCode: status,
         message: exception.message,
         result: exception,
@@ -57,7 +55,6 @@ import {
    
    
       return {
-        status: true,
         message: 'Success',
         statusCode,
         data: res,

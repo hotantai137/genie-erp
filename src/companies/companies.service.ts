@@ -23,7 +23,6 @@ export class CompaniesService {
   }
 
   findOneByCode(name: string): Promise<Company | null> {
-    console.log(name);
     return this.companiesRepository.findOneBy({ COMPANYTAXID: name });
   }
 

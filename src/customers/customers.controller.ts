@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, Put, Query, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Put, Query, Req, UseInterceptors } from '@nestjs/common';
 import { CustomersService } from './customers.service';
 import { Customer } from './customer.entity';
 import { PageDto } from 'src/common/page.dto';
@@ -7,7 +7,7 @@ import { PageOptionsDto } from 'src/common/pageOptions.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { ApiPaginatedResponse } from 'src/document/apiPaginatedRes.decorator';
 import { CustomerDto } from './dtos/customerCreate.dto';
-import { ResponseInterceptor } from 'src/common/response.interceptor';
+import { CustomerChangePwdDto } from './dtos/customerChangePwd.dto';
 
 @Controller('customer')
 @ApiTags('customer')
@@ -23,16 +23,32 @@ export class CustomersController {
   }
 
   @Public()
+  @Get(':phoneNumber')
+  @HttpCode(HttpStatus.OK)
+  @ApiPaginatedResponse(Customer)
+  get(@Param('phoneNumber') phoneNumber: string): Promise<Customer> {
+    return this.customersService.findOneByPhone(phoneNumber);
+  }
+
+  @Public()
   @Post()
   @HttpCode(HttpStatus.OK)
   post(@Body() customer: CustomerDto): Promise<Customer> {
     return this.customersService.create(customer);
   }
 
-  @Public()
   @Put()
   @HttpCode(HttpStatus.OK)
-  put(@Body() customer: CustomerDto): Promise<Customer> {
+  put(@Body() customer: CustomerDto, @Req() request: Request): Promise<any> {
+    const user = request['user'];
+    console.log(user);
     return this.customersService.update(customer);
+  }
+
+  @Public()
+  @Post('update-password')
+  @HttpCode(HttpStatus.OK)
+  UpdatePassword(@Body() customer: CustomerChangePwdDto): Promise<any> {
+    return this.customersService.updatePassword(customer);
   }
 }

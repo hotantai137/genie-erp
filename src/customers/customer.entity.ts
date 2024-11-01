@@ -6,7 +6,7 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
   synchronize: true,
 })
 export class Customer extends AbstractEntity {
-  @Column()
+  @Column({ unique: true, nullable: false })
   phoneNumber: string;
 
   @Column()
@@ -31,6 +31,6 @@ export class Customer extends AbstractEntity {
   @Column()
   address: string;
 
-  @Column()
+  @Column({ nullable: false })
   companyId: number;
 }

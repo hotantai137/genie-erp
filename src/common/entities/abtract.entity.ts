@@ -29,5 +29,5 @@ export abstract class AbstractEntity {
 
   @Column({type: 'varchar', length: 12})
   @Exclude()
-  public updatedAt: Date;
+  public updatedAt: string;
 }
